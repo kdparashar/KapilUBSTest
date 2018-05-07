@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class BerlinClockFixture {
 
-    private TimeConverter berlinClock;
+    private TimeConverter berlinClock = new TimeConverterImpl();
     private String theTime;
 
     @Test
@@ -29,7 +29,7 @@ public class BerlinClockFixture {
         theTime = time;
     }
 
-    @Then("the clock should look like $")
+    @Then("the clock should look like $theExpectedBerlinClockOutput")
     public void thenTheClockShouldLookLike(String theExpectedBerlinClockOutput) {
         assertThat(berlinClock.convertTime(theTime)).isEqualTo(theExpectedBerlinClockOutput);
     }

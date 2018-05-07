@@ -34,7 +34,6 @@ public final class ClasspathStoryFinder {
         WildcardFileFilter regexFileFilter = new WildcardFileFilter(aFilenameWithWildcards);
         List<File> rootDirsToSearchFrom = getRootDirs();
         LOG.info("Searching for stories called [{}] in [{}]", aFilenameWithWildcards, rootDirsToSearchFrom);
-
         List<File> ret = new ArrayList<File>() ;
         for (File f : rootDirsToSearchFrom) {
             ret.addAll(listFiles(f, regexFileFilter, DirectoryFileFilter.DIRECTORY)) ;
@@ -45,7 +44,7 @@ public final class ClasspathStoryFinder {
     private static List<File> getRootDirs() {
         List<File> ret = new ArrayList<File>() ;
         try {
-            Enumeration<URL> roots = ClasspathStoryFinder.class.getClassLoader().getResources("") ;
+            Enumeration<URL> roots = ClasspathStoryFinder.class.getClassLoader().getResources("stories") ;
             while(roots.hasMoreElements()) {
                 ret.add(new File(roots.nextElement().getFile())) ;
             }
